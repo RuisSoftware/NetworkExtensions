@@ -1,4 +1,4 @@
-# Network Extensions 2 (Modernized) v2.1.0
+# Network Extensions 2 v2.1.0
 
 A continuation and modernization of the Network Extensions 2 mod for Cities: Skylines 1.21+.
 
@@ -6,7 +6,7 @@ A continuation and modernization of the Network Extensions 2 mod for Cities: Sky
 - **v2.1.0**:
     - Updated for version 1.21.1.F5 (Hotels & Retreats compatibility).
     - Fixed Linux build and asset loading issues (`PluginInfo.modPath`).
-    - Fixed UI categories for compatibility with modern DLCs (Trams, Monorail, Trolleybus).
+    - Fixed UI categories for compatibility with modern DLCs.
 - **Harmony**: Now using Harmony 2.2 integrated API.
 
 ## Road Features
@@ -48,7 +48,5 @@ If you think this mod is causing issues, follow these steps:
 7. If the problem persists, please document your findings and upload a vanilla save file for testing.
 
 ## Links & Credits
-- **Standard UI**: Modern road tabs (Trams, Monorail, Trolleybus) now correctly display NE2 roads.
-- **TM:PE Compatibility**: Highly recommended for traffic control. [TM:PE GitHub](https://github.com/CitiesSkylinesMods/TMPE)
-- **Multiplayer**: Compatible with [Cities: Skylines Multiplayer (CSM)](https://github.com/CSM-Developers/CSM) via the `CSM.TmpeSync` bridge.
+- **Multiplayer**: Compatible with [Cities: Skylines Multiplayer (CSM)](https://github.com/CSM-Developers/CSM).
 - **Original Mod**: Credits to the original Team NeXT for the foundation.
