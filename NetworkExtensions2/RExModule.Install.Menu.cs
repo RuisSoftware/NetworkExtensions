@@ -37,7 +37,6 @@ namespace Transit.Addon.RoadExtensions
                 RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_TRAMS, 85);
                 RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_MONORAIL, 95);
                 RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_TROLLEYBUS, 105);
-                RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_PROMENADES, 115);
 
                 var categories = host.Parts
                     .OfType<IMenuItemBuilder>()

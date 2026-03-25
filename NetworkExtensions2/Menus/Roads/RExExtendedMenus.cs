@@ -12,6 +12,5 @@ namespace Transit.Addon.RoadExtensions.Menus.Roads
         public const string ROADS_TRAMS = "RoadsTrams";
         public const string ROADS_MONORAIL = "RoadsMonorail";
         public const string ROADS_TROLLEYBUS = "RoadsTrolleybus";
-        public const string ROADS_PROMENADES = "RoadsPromenades";
     }
 }

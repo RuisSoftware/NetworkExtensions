@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 using ColossalFramework;
 using ColossalFramework.Plugins;
@@ -21,7 +21,7 @@ namespace NetworkExtensions
 
         public override string Version
         {
-            get { return "1.0.0"; }
+            get { return "2.1.0"; }
         }
 
         private const string NEXT_2_ID = "812125426";
