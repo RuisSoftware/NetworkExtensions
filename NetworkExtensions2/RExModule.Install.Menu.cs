@@ -1,4 +1,4 @@
-﻿using JetBrains.Annotations;
+using JetBrains.Annotations;
 using System.Linq;
 using Transit.Addon.RoadExtensions.Menus;
 using Transit.Addon.RoadExtensions.Menus.Roads;
@@ -32,6 +32,12 @@ namespace Transit.Addon.RoadExtensions
                 RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_SMALL_HV, 20);
                 RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_BUSWAYS, 65);
                 RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_PEDESTRIANS, 75);
+
+                // Modern DLC Categories ordering
+                RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_TRAMS, 85);
+                RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_MONORAIL, 95);
+                RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_TROLLEYBUS, 105);
+                RoadCategoryOrderManager.RegisterCategory(RExExtendedMenus.ROADS_PROMENADES, 115);
 
                 var categories = host.Parts
                     .OfType<IMenuItemBuilder>()

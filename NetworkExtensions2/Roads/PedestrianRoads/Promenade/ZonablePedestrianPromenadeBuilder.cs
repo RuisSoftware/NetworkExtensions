@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Transit.Addon.RoadExtensions.Menus.Roads;
@@ -22,7 +22,7 @@ namespace Transit.Addon.RoadExtensions.Roads.PedestrianRoads.Promenade
         public string DisplayName { get { return "Zonable Promenade"; } }
         public string Description { get { return "Promenade is only accessible to pedestrians, cyclists, and emergency vehicles"; } }
         public string ShortDescription { get { return "Zoneable, No Passenger Vehicles [AfterDark DLC AND Traffic++ V2 required]"; } }
-        public string UICategory { get { return RExExtendedMenus.ROADS_PEDESTRIANS; } }
+        public string UICategory { get { return RExExtendedMenus.ROADS_PROMENADES; } }
 
         public string ThumbnailsPath { get { return @"Roads\PedestrianRoads\Promenade\thumbnails.png"; } }
         public string InfoTooltipPath { get { return @"Roads\PedestrianRoads\Promenade\infotooltip.png"; } }

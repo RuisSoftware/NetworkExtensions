@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -40,19 +40,16 @@
       <HintPath>..\References\Assembly-CSharp.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="CitiesHarmony.API, Version=2.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CitiesHarmony.API.2.1.0\lib\net35\CitiesHarmony.API.dll</HintPath>
-    </Reference>
-    <Reference Include="CitiesHarmony.Harmony, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\CitiesHarmony.Harmony.2.2.0\lib\net35\CitiesHarmony.Harmony.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="ColossalManaged">
       <HintPath>..\References\ColossalManaged.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ICities">
       <HintPath>..\References\ICities.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="CitiesHarmony.Harmony">
+      <HintPath>..\References\CitiesHarmony.Harmony.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="ObjUnity3D">
@@ -62,12 +59,17 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml" />
     <Reference Include="UnityEngine">
-      <HintPath>D:\Program Files\SteamLibrary\steamapps\common\Cities_Skylines\Cities_Data\Managed\UnityEngine.dll</HintPath>
+      <HintPath>..\References\UnityEngine.dll</HintPath>
       <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies.net35" Version="1.0.3" PrivateAssets="All" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Compatibility\RoadColorChanger.cs" />
+    <Compile Include="Compatibility\CitiesHarmony\HarmonyHelper.cs" />
+    <Compile Include="Compatibility\CitiesHarmony\SubscriptionPrompt.cs" />
     <Compile Include="ExtensionPoints\AI\IRoadSnappingMode.cs" />
     <Compile Include="ExtensionPoints\AI\IZoneBlocksCreator.cs" />
     <Compile Include="ExtensionPoints\AI\RoadSnappingModeManager.cs" />
@@ -236,7 +238,7 @@
     <Compile Include="Roads\SmallRoads\BasicRoadPntMdn\BasicRoadPntMdnBuilder.Texturing.cs" />
     <Compile Include="Roads\TinyRoads\AlleyCulDeSac\AlleyCulDeSacBuilder.cs" />
     <Compile Include="Roads\TinyRoads\Oneway1LBicycle\Oneway1LBicycleBuilder.cs" />
-    <Compile Include="Roads\TinyRoads\Oneway1LParking\Oneway1LParkingBuilder.cs" />
+    <Compile Include="Roads\TinyRoads\Oneway1LParking\OneWay1LParkingBuilder.cs" />
     <Compile Include="Roads\TinyRoads\Plain2L\PlainStreetBuilder.cs" />
     <Compile Include="Roads\TinyRoads\Plain2L\PlainStreetBuilder.Texturing.cs" />
     <Compile Include="Roads\SmallHeavyRoads\AsymRoadL1R2\AsymRoadL1R2Builder.Texturing.cs" />
@@ -284,7 +286,7 @@
     <Compile Include="RExModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roads\Highways\Highway6L\Highway6LBuilder.cs" />
-    <Compile Include="Roads\TinyRoads\Oneway1L\Oneway1LBuilder.cs" />
+    <Compile Include="Roads\TinyRoads\OneWay1L\OneWAy1LBuilder.cs" />
     <Compile Include="SomeRoads\PlanningRoadLargeBuilder.cs" />
     <Compile Include="SomeRoads\PlanningRoadSmallBuilder.cs" />
     <Compile Include="ToolModule.cs" />
@@ -3289,37 +3291,37 @@
     <Content Include="Roads\TinyRoads\Oneway1LParking\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\thumbnails.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\thumbnails.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\infotooltip.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\infotooltip.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\Textures\Ground_LOD__XYSMap.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\Textures\Ground_LOD__XYSMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\Textures\Ground_Node_LOD__APRMap.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\Textures\Ground_Node_LOD__APRMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\Textures\Ground_Node_LOD__MainTex.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\Textures\Ground_Node_LOD__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\Textures\Ground_Node__APRMap.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\Textures\Ground_Node__APRMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\Textures\Ground_Node__MainTex.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\Textures\Ground_Node__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\Textures\Ground_Segment_LOD__APRMap.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\Textures\Ground_Segment_LOD__APRMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\Textures\Ground_Segment_LOD__MainTex.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\Textures\Ground_Segment_LOD__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\Textures\Ground_Segment__APRMap.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\Textures\Ground_Segment__APRMap.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Roads\TinyRoads\Oneway1L\Textures\Ground_Segment__MainTex.png">
+    <Content Include="Roads\TinyRoads\OneWay1L\Textures\Ground_Segment__MainTex.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Roads\TinyRoads\Plain2L\infotooltip.png">
@@ -4244,20 +4246,20 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
+  <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
     <PostBuildEvent>forfiles /P "$(ProjectDir)bin\$(ConfigurationName)" /S /M *.CRP /C "cmd /c move @file "$(ProjectDir)bin\$(ConfigurationName)""
 
 if $(ConfigurationName) == Debug (
-rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
-mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
-xcopy /q /y /e "$(ProjectDir)bin\$(ConfigurationName)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
+rd /s /q  "%LOCALAPPDATA%\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
+mkdir "%LOCALAPPDATA%\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
+xcopy /q /y /e "$(ProjectDir)bin\$(ConfigurationName)" "%LOCALAPPDATA%\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
 ) else (
-rd /s /q  "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
-mkdir "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
-xcopy /q /y /e "$(ProjectDir)bin\$(ConfigurationName)" "%25LOCALAPPDATA%25\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
+rd /s /q  "%LOCALAPPDATA%\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
+mkdir "%LOCALAPPDATA%\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
+xcopy /q /y /e "$(ProjectDir)bin\$(ConfigurationName)" "%LOCALAPPDATA%\Colossal Order\Cities_Skylines\Addons\Mods\NetworkExtensions2"
 )</PostBuildEvent>
   </PropertyGroup>
-  <PropertyGroup>
+  <PropertyGroup Condition=" '$(OS)' == 'Windows_NT' ">
     <PreBuildEvent>del /f /q "$(TargetDir)"</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using ColossalFramework.IO;
 using ColossalFramework.PlatformServices;
 using ICities;
@@ -37,17 +37,8 @@ namespace Transit.Framework.Mod
             {
                 if (_assetPath == null)
                 {
-                    var publishedFileID = PluginInfo.publishedFileID.AsUInt64;
-                    _assetPath = GetAssetPath(DefaultFolderPath, publishedFileID);
-
-                    if (_assetPath != Assets.PATH_NOT_FOUND)
-                    {
-                        Debug.Log("TFW: Mod path " + _assetPath);
-                    }
-                    else
-                    {
-                        Debug.Log("TFW: Path not found");
-                    }
+                    _assetPath = PluginInfo.modPath;
+                    Debug.Log("TFW: Mod path " + _assetPath);
                 }
                 return _assetPath;
             }

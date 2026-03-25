@@ -1,4 +1,4 @@
-﻿using CitiesHarmony.API;
+using CitiesHarmony.API;
 using ICities;
 using NetworkExtensions2.Patching;
 using System.Diagnostics;

@@ -1,4 +1,4 @@
-﻿
+
 namespace Transit.Addon.RoadExtensions.Menus.Roads
 {
     public static class RExExtendedMenus
@@ -7,5 +7,11 @@ namespace Transit.Addon.RoadExtensions.Menus.Roads
         public const string ROADS_SMALL_HV = "RoadsSmallHV";
         public const string ROADS_BUSWAYS = "RoadsBusways";
         public const string ROADS_PEDESTRIANS = "RoadsPedestrians";
+
+        // Modern DLC Categories
+        public const string ROADS_TRAMS = "RoadsTrams";
+        public const string ROADS_MONORAIL = "RoadsMonorail";
+        public const string ROADS_TROLLEYBUS = "RoadsTrolleybus";
+        public const string ROADS_PROMENADES = "RoadsPromenades";
     }
 }
