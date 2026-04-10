@@ -21,10 +21,10 @@ namespace NetworkExtensions
 
         public override string Version
         {
-            get { return "2.1.0"; }
+            get { return "2.1.1"; }
         }
 
-        private const string NEXT_2_ID = "812125426";
+        private const string NEXT_2_ID = "3694047063";
         private bool? _isNEXT2Installed;
 
         public bool IsNEXT2Installed

@@ -52,24 +52,15 @@ namespace Transit.Framework.Mod
 
                 foreach (var item in plugins)
                 {
-                    try
+                    if (item.GetAssemblies().Any(a => a == typeof(TransitModBase).Assembly))
                     {
-                        var instances = item.GetInstances<IUserMod>();
-                        if (!(instances.FirstOrDefault() is TransitModBase))
-                        {
-                            continue;
-                        }
                         return item;
-                    }
-                    catch
-                    {
-
                     }
                 }
                 throw new Exception("Failed to find NetworkExtensions assembly!");
-
             }
         }
+
         private static string GetAssetPath(string defaultFolderPath, ulong workshopId)
         {
             // 1. Check Local path (CurrentUser\Appdata\Local\Colossal Order\Cities_Skylines\Addons\Mods)

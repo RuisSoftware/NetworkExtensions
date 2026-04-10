@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 using Transit.Addon.RoadExtensions.Compatibility;
 using Transit.Addon.RoadExtensions.Props;
@@ -151,7 +151,7 @@ namespace Transit.Addon.RoadExtensions.Roads.Avenues.LargeAvenue8LM
         {
             if (version == NetInfoVersion.Bridge)
             {
-                var bridgePillar = PrefabCollection<BuildingInfo>.FindLoaded($"{Framework.Tools.PackageName("BridgePillar")}.CableStay32m_Data");
+                var bridgePillar = Transit.Framework.Tools.FindLoaded<BuildingInfo>("BridgePillar.CableStay32m");
                 if (bridgePillar == null)
                 {
                     Debug.Log($"{info.name}: CableStay32m Pillar not found!");

@@ -1,4 +1,5 @@
-﻿using static ColossalFramework.Plugins.PluginManager;
+using System.Collections.Generic;
+using static ColossalFramework.Plugins.PluginManager;
 using ColossalFramework.Plugins;
 using ColossalFramework.PlatformServices;
 using Object = UnityEngine.Object;
@@ -47,41 +48,117 @@ namespace Transit.Framework
             }
         }
 
-        public static string PackageName(string assetName)
+        public static string PackageName(string assetName = null)
         {
-            var publishedFileID = PluginInfo.publishedFileID.ToString();
-            if (publishedFileID.Equals(PublishedFileId.invalid.ToString()))
+            var pInfo = PluginInfo;
+            if (pInfo == null)
             {
                 return assetName;
             }
-            return publishedFileID;
+
+            if (string.IsNullOrEmpty(assetName))
+            {
+                return pInfo.name;
+            }
+            return pInfo.name + "." + assetName;
+        }
+
+        public static T FindLoaded<T>(string assetName) where T : PrefabInfo
+        {
+            if (string.IsNullOrEmpty(assetName))
+            {
+                return null;
+            }
+
+            string baseName = assetName;
+            if (baseName.EndsWith("_Data", StringComparison.InvariantCultureIgnoreCase))
+            {
+                baseName = baseName.Substring(0, baseName.Length - 5);
+            }
+
+            // List of potential full names to try
+            var toTry = new List<string>();
+            var pluginNames = new[] { PluginInfo.name, "NetworkExtensions2", "NetworkExtentions2" };
+            var subFolders = new[] { "", "Buildings.", "Props." };
+
+            foreach (var pName in pluginNames)
+            {
+                foreach (var sub in subFolders)
+                {
+                    toTry.Add(pName + "." + sub + baseName + "_Data");
+                }
+            }
+            
+            // Also try without any mod prefix (legacy/TAM)
+            toTry.Add(baseName + "_Data");
+            toTry.Add("TAM." + baseName + "_Data");
+            if (baseName.Contains("."))
+            {
+                toTry.Add("TAM." + baseName.Substring(baseName.LastIndexOf('.') + 1) + "_Data");
+            }
+
+            // 1. Try all generated variations
+            foreach (var fullName in toTry.Distinct())
+            {
+                var result = PrefabCollection<T>.FindLoaded(fullName);
+                if (result != null) return result;
+            }
+
+            // 2. Fallback: Search all loaded prefabs for one that ends with our baseName
+            // This is slower but only happens if the above fail.
+            try
+            {
+                int loadedCount = PrefabCollection<T>.LoadedCount();
+                for (int i = 0; i < loadedCount; i++)
+                {
+                    var info = PrefabCollection<T>.GetLoaded((uint)i);
+                    if (info == null) continue;
+                    
+                    if (info.name.EndsWith(baseName + "_Data", StringComparison.InvariantCultureIgnoreCase) || 
+                        info.name.EndsWith(baseName, StringComparison.InvariantCultureIgnoreCase))
+                    {
+                        return info;
+                    }
+
+                    // Even more desperate: if baseName has a dot (e.g. BridgePillar.CableStay32m), try matching just the end part
+                    if (baseName.Contains("."))
+                    {
+                        var shortName = baseName.Substring(baseName.LastIndexOf('.') + 1);
+                        if (info.name.EndsWith(shortName + "_Data", StringComparison.InvariantCultureIgnoreCase) || 
+                            info.name.EndsWith(shortName, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            return info;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // Ignore errors during iteration
+            }
+
+            return null;
         }
 
         private static PluginInfo PluginInfo
         {
             get
             {
-                var pluginManager = PluginManager.instance;
-                var plugins = pluginManager.GetPluginsInfo();
-
-                foreach (var item in plugins)
+                try
                 {
-                    try
-                    {
-                        var instances = item.GetInstances<IUserMod>();
-                        if (!(instances.FirstOrDefault() is TransitModBase))
-                        {
-                            continue;
-                        }
-                        return item;
-                    }
-                    catch
-                    {
+                    var pluginManager = PluginManager.instance;
+                    var plugins = pluginManager.GetPluginsInfo();
 
+                    foreach (var item in plugins)
+                    {
+                        if (item.GetAssemblies().Any(a => a == typeof(Tools).Assembly))
+                        {
+                            return item;
+                        }
                     }
                 }
-                throw new Exception("Failed to find NetworkExtensions assembly!");
-
+                catch { }
+                return null;
             }
         }
 

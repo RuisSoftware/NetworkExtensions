@@ -237,10 +237,10 @@ namespace Transit.Addon.RoadExtensions.Roads.PedestrianRoads.Promenade
         public void LateBuildUp(NetInfo info, NetInfoVersion version)
         {
             var bollardName = "StoneBollard";
-            var stoneBollard = PrefabCollection<PropInfo>.FindLoaded($"{Framework.Tools.PackageName(bollardName)}.{bollardName}_Data");
+            var stoneBollard = Transit.Framework.Tools.FindLoaded<PropInfo>(bollardName);
 
             var RoadPlanter1Name = "RoadPlanter1";
-            var RoadPlanter1 = PrefabCollection<PropInfo>.FindLoaded($"{Framework.Tools.PackageName(RoadPlanter1Name)}.{RoadPlanter1Name}_Data");
+            var RoadPlanter1 = Transit.Framework.Tools.FindLoaded<PropInfo>(RoadPlanter1Name);
 
             var pedLanes = info.m_lanes.Where(pl => pl.m_laneType == NetInfo.LaneType.Pedestrian).ToArray();
             for (var i = 0; i < pedLanes.Length; i++)

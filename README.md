@@ -1,13 +1,15 @@
-# Network Extensions 2 v2.1.0
+# Network Extensions 2 v1.2.0
 
 A continuation and modernization of the Network Extensions 2 mod for Cities: Skylines 1.21+.
 
 ## What's New
-- **v2.1.0**:
+- **v1.2.0**:
     - Updated for version 1.21.1.F5 (Hotels & Retreats compatibility).
     - Fixed Linux build and asset loading issues (`PluginInfo.modPath`).
     - Fixed UI categories for compatibility with modern DLCs.
 - **Harmony**: Now using Harmony 2.2 integrated API.
+
+- **v1.1.0**: first compatibility push.
 
 ## Road Features
 Current support includes:
